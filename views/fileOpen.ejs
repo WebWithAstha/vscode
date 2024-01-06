@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>VsCode</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="main">
+        <div id="home">
+            <div class="overlay">
+                <div class="box">
+                    <form id="updatefileform" action="/update">
+                        <input type="text" name="updatedfile" id="filenameinput" placeholder="newname">
+                        <input type="submit" class="submit" value="Update">
+                        <i class="closeoverlay ri-close-line"></i>
+                    </form>
+                </div>
+            </div>
+            <div class="left">
+                <div class="head">
+                    <h3><%= folder %></h3>
+                    <div class="icons">
+                        <i class="addfoldericon ri-folder-add-line"></i>
+                        <i class="addfileicon ri-file-add-line"></i>
+                        <a href="/refresh"><i class="ri-restart-line"></i></a>
+                    </div>
+                </div>
+                <div class="files">
+                    <form id="createfileform" class="creatingform" action="/createfile">
+                        <i class="ri-file-line"></i>
+                        <input type="text" placeholder="filename" name="newfile">
+                    </form>
+                    <form id="createfolderform" class="creatingform" action="/createfolder">
+                        <i class="ri-folder-line"></i>
+                        <input type="text" placeholder="foldername" name="newfolder">
+                    </form>
+
+                    <%files.forEach(function(file){%>
+                        <div class="file">
+                            <div class="filename">
+                                <%if(file.isDirectory()){%>
+                                    <i class="ri-folder-line"></i>
+                                    <a href="/folder/<%= file.name %>"><h4><%= file.name %></h4></a>
+                                <%}else{%>
+                                    <i class="ri-file-line"></i>
+                                    <a href="/file/<%= file.name %>"><h4><%= file.name %></h4></a>
+                                <%}%>
+                            </div>
+                            <div class="icons">
+                                <%if(file.isDirectory()){%>
+                                    <a href="/delete/folder/<%= file.name%>"><i class="deleteicon ri-delete-bin-line"></i></a>
+                                <%}else{%>
+                                    <a href="/delete/file/<%= file.name%>"><i class="deleteicon ri-delete-bin-line"></i></a>
+                                <%}%>
+                                <i data-filename="<%= file.name %>" id="renameicon" class="ri-pencil-line"></i>
+                            </div>
+                        </div>
+                    <%})%>
+
+                </div>
+            </div>
+            <div class="right">
+                <div id="nav">
+                    <div class="filetab">
+                        <h4><%= fileopen %></h4>
+                    </div>
+                </div>
+                <form action="/savefile/<%= fileopen %>">
+                    <textarea name="filecontent"><%= filedata %></textarea>
+                    <input type="submit" value="Save" id="save">
+                </form>
+            </div>
+            
+        </div>
+        <div id="page2"></div>
+        <div id="page3"></div>  
+    </div>
+
+
+
+    <script>
+        document.querySelector(".addfileicon").addEventListener("click",function(){
+            formOff()
+            document.querySelector("#createfileform").style.display = "flex"
+        })
+        document.querySelector(".addfoldericon").addEventListener("click",function(){
+            formOff()
+            document.querySelector("#createfolderform").style.display = "flex"
+        })
+        function formOff(){
+            document.querySelector("#createfileform").style.display = "none"
+            document.querySelector("#createfolderform").style.display = "none"
+        }
+        document.querySelector(".closeoverlay").addEventListener("click",function(){
+            formOff()
+            document.querySelector(".overlay").style.display = "none"
+        })
+
+
+
+
+        document.querySelector(".files").addEventListener("click",function(dets){
+            if(dets.target.id === "renameicon"){
+                document.querySelector(".overlay").style.display = "flex"
+                document.querySelector("#filenameinput").value = `${dets.target.dataset.filename}`
+                document.querySelector("#updatefileform").setAttribute("action",`/update/${dets.target.dataset.filename}`) 
+            }
+
+        })
+
+
+
+    </script>
+</body>
+
+</html>

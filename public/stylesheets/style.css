@@ -1,0 +1,243 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Dosis;
+    outline: none;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+#main {
+    width: 100%;
+}
+
+#home {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    background-color: rgb(18, 49, 57);
+    color: white;
+    position: relative;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+i {
+    cursor: pointer;
+}
+
+h4 {
+    font-weight: 400;
+}
+
+#home .left {
+    background-color: rgb(15, 40, 46);
+    width: 25%;
+    border: 1px solid lightblue;
+}
+
+#home .left:hover .head i {
+    display: initial;
+}
+
+#home .left .head {
+    padding: .5vw 1vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-transform: capitalize;
+    margin-bottom: .5vw;
+}
+
+#home .left .head i {
+    display: none;
+}
+
+#home .left .files .creatingform {
+    display: flex;
+    align-items: center;
+    gap: .5vw;
+    padding: .5vw 1vw;
+    display: none;
+}
+
+#home .left .files .creatingform input {
+    border: 1px solid lightblue;
+    padding: .4vw .2vw;
+    color: white;
+    background-color: transparent;
+    outline: none;
+}
+
+#home .left .files .creatingform input::placeholder {
+    color: #add8e68a;
+}
+
+#home .left .files .file {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .5vw 1vw;
+    border: 1px dashed transparent;
+}
+
+#home .left .files .file:hover {
+    border: 1px dashed lightblue;
+
+}
+
+#home .left .files .file .icons i {
+    display: none;
+}
+
+#home .left .files .file:hover i {
+    display: initial;
+}
+
+#home .left .files .file .filename {
+    display: flex;
+    align-items: center;
+    gap: .5vw;
+}
+
+#home .left .files .folderchildspace .file {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .5vw 1vw;
+    padding-left: 2vw;
+    border: 1px dashed transparent;
+}
+
+#home .left .files .folderchildspace .file:hover {
+    border-top: 1px dashed lightblue;
+    border-bottom: 1px dashed lightblue;
+
+}
+
+.overlay {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(5, 66, 81, 0.399);
+    display: none;
+    z-index: 9999;
+}
+
+.overlay .box form {
+    background-color: #ffffff;
+    color: black;
+    padding: 2vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .7vw;
+    position: relative;
+    border-radius: 15px;
+
+}
+
+.overlay .box i {
+    position: absolute;
+    top: 4%;
+    right: 2%;
+    font-size: 1.2vw;
+}
+
+.overlay .box input {
+    border: 2px solid rgb(4, 32, 42);
+    padding: .4vw .2vw;
+    background-color: transparent;
+    outline: none;
+    font-size: 1vw;
+}
+
+.overlay .box input::placeholder {
+    color: rgba(0, 0, 0, 0.514);
+
+}
+
+.overlay .box .submit {
+    background-color: black;
+    background-color: #123139;
+    color: white;
+    border-radius: 10px;
+    font-size: 1vw;
+    font-weight: 600;
+    padding: .5vw 1.5vw;
+    cursor: pointer;
+}
+
+#home .right {
+    width: 75%;
+    position: relative;
+    border: 1px solid lightblue;
+    border-left: none;
+}
+
+.right #nav {
+    display: flex;
+    width: 100%;
+    height: 6%;
+}
+
+.right #nav .filetab {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .5vw 1vw;
+    border-bottom: 1px solid lightblue;
+}
+
+.right form {
+    width: 100%;
+    height: 94%;
+    padding: 1vw;
+    position: relative;
+}
+
+.right form textarea {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 1.2vw;
+
+}
+
+.right form #save {
+    position: absolute;
+    right: 1.2%;
+    top: 0;
+    transform: translateY(-100%);
+    padding: .5vw 1vw;
+    background-color: #205f6f;
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+}
+
+.right #vs-png {
+    width: 20vw;
+    height: max-content;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    object-fit: cover;
+    position: absolute;
+    filter: hue-rotate(-30deg);
+    opacity: .3;
+}
